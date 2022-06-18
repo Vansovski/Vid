@@ -7,34 +7,44 @@
 
 <br>
 <hr>
+
 <div class="container">
-<div class="row">
+    <div class="row">
+        @foreach (var filme in @Model)
+        {
+            <div class="col-sm card ms-1">
+                <div class= "d-flex">
+                    <button class="btn-sm btn-success ms-1" rout>
+                        <span class="spinner-border spinner-border-sm-1"></span>
+                        Adicionar Atividade
+                    </button>
 
-@foreach (var filme in @Model)
-{
-    <div class="col-sm mr-2">
-        <button class="btn btn-success">
-            <span class="spinner-border spinner-border-sm ms-1"></span>
-                Adicionar Cliente
-        </button>
-        <h2>@filme.Movie.Name</h2>
-        <ul>
-           @if(@filme.Clientes == null)
-           {
-               <p>Sem Movimentação</p>
+                    <button class="btn-sm btn-danger ms-2">
+                        <span class="spinner-border spinner-border-sm ms-1"></span>
+                        Excluir Card                   
+                    </button>
+                </div>
 
-           }else
-           {
-                foreach (var cliente in @filme.Clientes)
-                {
-                <li><h3>@cliente.Name</h3></li>
-                }
-           }
-        </ul>
+                <div class="bg">
+                    <h2>@filme.Movie.Name</h2>
+                    <ul >
+                    @if(@filme.Clientes == null)
+                    {
+                        <p>Sem Movimentação</p>
+
+                    }else
+                    {
+                        foreach (var cliente in @filme.Clientes)
+                        {
+                        <li><h3>@cliente.Name</h3></li>
+                        }
+                    }
+                    </ul>
+
+                </div>
+
+            </div>
+        }
     </div>
-}
-</div>
-
-
 </div>
   

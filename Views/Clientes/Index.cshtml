@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Vidly.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes Cadastrados";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if(@Model != null)
+{
+    <ul>
+        @foreach(var cliente in @Model)
+        {
+            <li> @Html.ActionLink(cliente.Name , "Detalhes", new { id = cliente.Id })</li>
+        }
+    </ul>
+}
+else
+{
+    <h2> Nenhum Cliente Cadastrado!</h2>
+}
+
+

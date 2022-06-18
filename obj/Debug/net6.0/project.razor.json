@@ -16308,6 +16308,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Clientes/Index.cshtml",
+      "TargetPath": "Views\\Clientes\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Home/Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -16325,6 +16330,11 @@
     {
       "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Movies/Index.cshtml",
       "TargetPath": "Views\\Movies\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Clientes/Detalhes.cshtml",
+      "TargetPath": "Views\\Clientes\\Detalhes.cshtml",
       "FileKind": "mvc"
     },
     {

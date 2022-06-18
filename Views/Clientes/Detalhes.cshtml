@@ -1,0 +1,22 @@
+@model Vidly.Models.Cliente
+
+@{
+    ViewData["Title"] = "Cliente";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if(@Model != null)
+{
+    <h2>Informações de cadastro</h2>
+
+    <div>
+        Nome: @Model.Name
+        <p>
+        Id: @Model.Id
+    </div>
+}
+else
+{
+    <h2> Nenhum Cliente Cadastrado!</h2>
+}
