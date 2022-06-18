@@ -48,9 +48,10 @@ namespace Vidly.Controllers
             if (String.IsNullOrWhiteSpace(sortBy)) sortBy = "Name";
             //return Content($"page={pageIndex}, sort By {sortBy}");
             //Inserindo os filmes 
-            var movie = new Movie() { Name = "Sherek2" };
-            var filme = new Movie() { Name = "Meu Malvado" };
+            var filme = new Movie() { Name = "Angular" };
+            var filme1 = new Movie() { Name = "React" };
             var filme2 = new Movie() { Name = "Programando MVC" };
+            var filme3 = new Movie() { Name = "Deluge" };
 
             List<Cliente> clientes = new List<Cliente>{
                new Cliente { Name = "Peter"},
@@ -61,14 +62,16 @@ namespace Vidly.Controllers
                new Cliente { Name = "Marcelo"}
            };
 
-            var movieCustomers = new MovieCustomers { Movie = movie, Clientes = clientes };
-            var movieCustomers1 = new MovieCustomers { Movie = filme, Clientes = clientes };
+            var movieCustomers = new MovieCustomers { Movie = filme, Clientes = clientes };
+            var movieCustomers1 = new MovieCustomers { Movie = filme1, Clientes = clientes };
             var movieCustomers2 = new MovieCustomers { Movie = filme2, Clientes = clientes1 };
+            var movieCustomers3 = new MovieCustomers { Movie = filme3 };
 
             List<MovieCustomers> filmesClientes = new List<MovieCustomers>{
                movieCustomers,
                movieCustomers1,
-               movieCustomers2
+               movieCustomers2,
+               movieCustomers3
            };
 
             return View(filmesClientes);

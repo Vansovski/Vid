@@ -15,15 +15,21 @@
     <div class="col-sm mr-2">
         <button class="btn btn-success">
             <span class="spinner-border spinner-border-sm ms-1"></span>
-                Salvar Alteração
+                Adicionar Cliente
         </button>
         <h2>@filme.Movie.Name</h2>
         <ul>
-            @foreach (var cliente in @filme.Clientes)
-            {
-                <li><h3>@cliente.Name</h3></li>
-            }
+           @if(@filme.Clientes == null)
+           {
+               <p>Sem Movimentação</p>
 
+           }else
+           {
+                foreach (var cliente in @filme.Clientes)
+                {
+                <li><h3>@cliente.Name</h3></li>
+                }
+           }
         </ul>
     </div>
 }
