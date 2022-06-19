@@ -16328,6 +16328,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Movies/allMovies.cshtml",
+      "TargetPath": "Views\\Movies\\allMovies.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Movies/Index.cshtml",
       "TargetPath": "Views\\Movies\\Index.cshtml",
       "FileKind": "mvc"

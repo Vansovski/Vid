@@ -84,5 +84,10 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
+        public ActionResult allMovies()
+        {
+            return View(Movie.listarFilmes());
+        }
+
     }
 }
