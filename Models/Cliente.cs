@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Models
 {
@@ -9,33 +6,12 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
-
-        public List<ClienteFilme>? Filmes { get; set; }
-
+        [Required]
+        public string Nome { get; set; }
+        public bool EnviarNewsLetter { get; set; }
         
-        public static List<Cliente> listarClientes()
-        {
-            var clientes = new List<Cliente>
-            {
-                new Cliente { Id = 1, Name = "Marcelo"},
-                new Cliente { Id = 2, Name = "Pedro"},
-                new Cliente { Id = 3, Name = "João"},
-                new Cliente { Id = 4, Name = "Fernando"},
-                new Cliente { Id = 5, Name = "Leon"},
-            };
-
-            return clientes;
-        }
-
-        public static Cliente Detalhe(int id )
-        {
-            //Utilizando Linq, antes de implementar camada de Persistencia 
-            var cliente = from item in Cliente.listarClientes()
-                        where item.Id == id
-                        select item;
-
-            return cliente.FirstOrDefault();
-        }
+        public byte MembroTipoId { get; set; }        
+        public MembroTipo MembroTipo { get; set; }
+        public List<ClienteFilme>? Filmes { get; set; }
     }
 }

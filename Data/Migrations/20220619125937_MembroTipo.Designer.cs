@@ -10,8 +10,8 @@ using Vidly.Data;
 namespace Vidly.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220619034256_init")]
-    partial class init
+    [Migration("20220619125937_MembroTipo")]
+    partial class MembroTipo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,11 +24,19 @@ namespace Vidly.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<bool>("EnviarNewsLetter")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte>("MembroTipoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MembroTipoId");
 
                     b.ToTable("Clientes");
                 });
@@ -41,43 +49,78 @@ namespace Vidly.Data.Migrations
                     b.Property<int>("MovieId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("FilmeId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ClienteId", "MovieId");
 
-                    b.HasIndex("MovieId");
+                    b.HasIndex("FilmeId");
 
-                    b.ToTable("ClienteFilme");
+                    b.ToTable("ClientesFilmes");
                 });
 
-            modelBuilder.Entity("Vidly.Models.Movie", b =>
+            modelBuilder.Entity("Vidly.Models.Filme", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Titlo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Filmes");
+                });
+
+            modelBuilder.Entity("Vidly.Models.MembroTipo", b =>
+                {
+                    b.Property<byte>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte>("Desconto")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte>("DuracaoMeses")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<short>("SignUpFee")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MembroTipo");
+                });
+
+            modelBuilder.Entity("Vidly.Models.Cliente", b =>
+                {
+                    b.HasOne("Vidly.Models.MembroTipo", "MembroTipo")
+                        .WithMany()
+                        .HasForeignKey("MembroTipoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MembroTipo");
                 });
 
             modelBuilder.Entity("Vidly.Models.ClienteFilme", b =>
                 {
-                    b.HasOne("Vidly.Models.Cliente", null)
+                    b.HasOne("Vidly.Models.Cliente", "Cliente")
                         .WithMany("Filmes")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Vidly.Models.Movie", "Movie")
+                    b.HasOne("Vidly.Models.Filme", "Filme")
                         .WithMany("Clientes")
-                        .HasForeignKey("MovieId")
+                        .HasForeignKey("FilmeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Movie");
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Filme");
                 });
 
             modelBuilder.Entity("Vidly.Models.Cliente", b =>
@@ -85,7 +128,7 @@ namespace Vidly.Data.Migrations
                     b.Navigation("Filmes");
                 });
 
-            modelBuilder.Entity("Vidly.Models.Movie", b =>
+            modelBuilder.Entity("Vidly.Models.Filme", b =>
                 {
                     b.Navigation("Clientes");
                 });

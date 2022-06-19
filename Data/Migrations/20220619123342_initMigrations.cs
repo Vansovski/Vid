@@ -4,7 +4,7 @@
 
 namespace Vidly.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class initMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,8 @@ namespace Vidly.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Nome = table.Column<string>(type: "TEXT", nullable: false),
+                    EnviarNewsLetter = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -22,58 +23,59 @@ namespace Vidly.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movies",
+                name: "Filmes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Titlo = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movies", x => x.Id);
+                    table.PrimaryKey("PK_Filmes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClienteFilme",
+                name: "ClientesFilmes",
                 columns: table => new
                 {
                     MovieId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false)
+                    ClienteId = table.Column<int>(type: "INTEGER", nullable: false),
+                    FilmeId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClienteFilme", x => new { x.ClienteId, x.MovieId });
+                    table.PrimaryKey("PK_ClientesFilmes", x => new { x.ClienteId, x.MovieId });
                     table.ForeignKey(
-                        name: "FK_ClienteFilme_Clientes_ClienteId",
+                        name: "FK_ClientesFilmes_Clientes_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClienteFilme_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
+                        name: "FK_ClientesFilmes_Filmes_FilmeId",
+                        column: x => x.FilmeId,
+                        principalTable: "Filmes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClienteFilme_MovieId",
-                table: "ClienteFilme",
-                column: "MovieId");
+                name: "IX_ClientesFilmes_FilmeId",
+                table: "ClientesFilmes",
+                column: "FilmeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ClienteFilme");
+                name: "ClientesFilmes");
 
             migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "Movies");
+                name: "Filmes");
         }
     }
 }

@@ -23,24 +23,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/allMovies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL2FsbE1vdmllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Movies/allMovies.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW92aWVzL2FsbE1vdmllcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Movies/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW92aWVzL0luZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Movies/Random.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW92aWVzL1JhbmRvbS5jc2h0bWw=
+[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Shared/Error.cshtml]
