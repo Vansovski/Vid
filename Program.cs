@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Vidly.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<DataContext>(
+    context=> context.UseSqlite(builder.Configuration.GetConnectionString("Default"))
+);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

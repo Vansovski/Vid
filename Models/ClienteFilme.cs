@@ -7,7 +7,9 @@ namespace Vidly.Models
 {
     public class ClienteFilme
     {
-        Movie Movie;
-        Cliente Cliente;
+        public int MovieId { get; set; }
+        public Movie Movie { get; set; }
+        public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }

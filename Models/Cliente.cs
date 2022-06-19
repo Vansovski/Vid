@@ -13,7 +13,7 @@ namespace Vidly.Models
 
         public List<ClienteFilme>? Filmes { get; set; }
 
-
+        
         public static List<Cliente> listarClientes()
         {
             var clientes = new List<Cliente>
