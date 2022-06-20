@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
+using Vidly.Models;
 
 namespace Vidly.Controllers
 {
@@ -18,15 +20,34 @@ namespace Vidly.Controllers
 
         public IActionResult Index()
         {
-            var clientes = _context.Clientes.ToList();
+            var clientes = _context.Clientes.Include(mt => mt.MembroTipo).ToList();
             return View(clientes);
         }
 
         public ActionResult Detalhes(int Id)
         {
-            var cliente = _context.Clientes.Where(cliente => cliente.Id == Id).FirstOrDefault();
+            var clientes = _context.ClientesFilmes
+            .Include(cliente => cliente.Cliente)
+            .Include(membro => membro.Cliente.MembroTipo)
+            .Include(filme => filme.Filme)
+            .Include(genero => genero.Filme.Genero)
+            .Where(cliente =>cliente.ClienteId == Id).ToList();
 
-            return View(cliente);
+            if(clientes.Count == 0)
+            {
+                //Obtem o cliente do context
+                var cliente = _context.Clientes.Include(c =>c.MembroTipo)
+                .Where(cliente =>cliente.Id == Id).FirstOrDefault();
+
+                //Verificar se encontrou o Cliente 
+                var _cliente = new List<ClienteFilme>{
+                    new ClienteFilme {ClienteId = Id, Cliente = cliente}
+                };
+
+                return View(_cliente);
+            }
+
+            return View(clientes);
         }
     }
 }

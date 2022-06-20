@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Vidly.Data;
 
 namespace Vidly.Controllers
@@ -16,13 +17,13 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-
             return View();
         }
 
         public ActionResult allMovies()
         {
-            return View(_context.Filmes);
+            var filmes = _context.Filmes.Include(f => f.Genero).ToList();
+            return View(filmes);
         }
 
     }
