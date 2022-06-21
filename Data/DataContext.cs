@@ -19,6 +19,11 @@ namespace Vidly.Data
 
         public DbSet <ClienteFilme> ClientesFilmes { get; set; }
 
+        public DbSet <MembroTipo> MembroTipo { get; set; }
+
+        public DbSet <Genero> Genero { get; set; }
+        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClienteFilme>()

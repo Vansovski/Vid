@@ -1,30 +1,54 @@
-@model IEnumerable<Vidly.Models.ClienteFilme>
+@model Vidly.ViewModel.ClienteFilmes
 
 @{
-    ViewData["Title"] = @Model.FirstOrDefault().Cliente.Nome;
+    ViewData["Title"] = @Model.Cliente.Nome;
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="row">
+        <div class="col-sm">
+            <h1>@ViewData["Title"]</h1>
+        </div>
 
+</div>
 
 @if(@Model != null)
 {
-    <h2>Informações de cadastro</h2>
+    <div class="row">
+        <div class="col-sm">
+        
+            <h2>Informações de cadastro</h2>
+        </div>
+
+        <div class="col-sm">
+        
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            
+                <button class="btn btn-primary" 
+
+                onclick="location.href='@Url.Action("Edit", "Clientes",new { Id = @Model.Cliente.Id })'">
+                    Editar
+                </button>
+
+                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">
+                    Add Filme
+                </button>
+            </div>
+            
+        </div>
+    </div>
 
     <div>
-        
-        
-        <p>Tipo de Membro: @Model.FirstOrDefault().Cliente.MembroTipo.Nome</p>
+        <p>Tipo de Membro: @Model.Cliente.MembroTipo.Nome</p>
         @{
-            if( @Model.FirstOrDefault().Cliente != null)
+            if( @Model.Cliente != null)
             {
-                <p>Data de Aniversário: @Model.FirstOrDefault().Cliente.DataAniversario</p>
+                <p>Data de Aniversário: @Model.Cliente.DataAniversario</p>
             }
         }
         @{
-            if(@Model.Count() > 0 )
+            if(@Model.Filmes.Count() > 0 )
             {
-                <div class="card">
+                <div class="card">  
                 
                 <h2>Filmes Assistidos</h2>
                 <table class="table table-hover">
@@ -34,25 +58,45 @@
                     </tr>
 
                     <tbody>
-                
-                        @{foreach(var filme in @Model)
+                        @{foreach(var filme in @Model.Filmes)
                             {
-                                if(filme.Filme != null)
+                                if(filme != null)
                                 {
-                                    <td>@filme.Filme.Titlo</td>
-                                    <td>@filme.Filme.Genero.Nome</td>
+                                    <td>@filme.Titlo</td>
+                                    <td>@filme.Genero.Nome</td>
                                 }
                             }
                         }
                     </tbody>
                   </table>
-                </div>
-                       
+                </div>    
             }
+            else
+            {
+                <h2> Nenhum Filme Locado!</h2>
+            } 
         }
     </div>
 }
-else
-{
-    <h2> Nenhum Cliente Cadastrado!</h2>
-} 
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Filmes Disponíveis</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

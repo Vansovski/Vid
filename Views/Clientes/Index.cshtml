@@ -6,6 +6,12 @@
 
 <h1>@ViewData["Title"]</h1>
 
+<button class="btn btn-primary my-2" 
+
+onclick="location.href='@Url.Action("NovoCliente", "Clientes")'">
+    Adiconar Cliente 
+</button>
+
 @if(@Model != null)
 {
     <div class="card">
@@ -34,5 +40,3 @@ else
 {
     <h2> Nenhum Cliente Cadastrado!</h2>
 }
-
-

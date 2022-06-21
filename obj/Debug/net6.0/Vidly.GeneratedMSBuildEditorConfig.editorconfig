@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/marcelo/Documentos/ASP.NET-MVC/Vidly
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Clientes/ClienteForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZXMvQ2xpZW50ZUZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Clientes/Detalhes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZXMvRGV0YWxoZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -23,8 +27,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/allMovies.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL2FsbE1vdmllcy5jc2h0bWw=
+[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/FilmeForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL0ZpbG1lRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/Index.cshtml]

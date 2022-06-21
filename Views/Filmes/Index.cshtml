@@ -1,5 +1,41 @@
+@model IEnumerable<Vidly.Models.Filme>
 @{
-    ViewData["Title"] = "Detalhes do Filme";
+    ViewData["Title"] = "Listagem de filmes";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1> @ViewData["Title"] </h1>
+
+<button class="btn btn-primary my-2" 
+
+onclick="location.href='@Url.Action("NovoFilme", "Filmes")'">
+    Adiconar Novo Filme
+</button>
+
+@if(@Model != null)
+{
+    <div class="card">
+
+        <table class="table table-hover">
+            <tr >
+                <th>Filmes</th>
+                <th>Genero</th>
+            </tr>
+            
+            <tbody>
+                @foreach(var filme in @Model)
+                {
+                    <tr>
+                        <td> @Html.ActionLink(filme.Titlo , "Index", new { id = filme.Id })</td>
+                        <td> @filme.Genero.Nome</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h2> Nenhum Cliente Cadastrado!</h2>
+}
+
+
