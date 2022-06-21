@@ -55,5 +55,12 @@ namespace Vidly.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult GetFilmes()
+        {
+            var filmes = _context.Filmes.Include(g => g.Genero).ToList();
+
+            return Json(filmes);
+        }
     }
 }

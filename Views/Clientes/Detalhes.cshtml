@@ -80,7 +80,8 @@
 }
 
 
-<!-- Modal -->
+<!-- Modal 
+-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -91,12 +92,57 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+
+          
+        <table id ="tableModal" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Filme</th>
+                    <th>Genero</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyTableModal">
+            </tbody>
+        </table>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-primary" onclick="BtnClick()">Salvar</button>
       </div>
     </div>
   </div>
+  <script>
+    function BtnClick()
+    {
+        $.ajax({
+            url: "/Filmes/GetFilmes",
+            method:"GET",
+            success:function (data){               
+                
+                var elemento = document.querySelector("#tbodyTableModal");
+                
+
+                data.forEach((value)=>{
+                
+                    let tr = document.createElement('tr');
+                    let tdTitlo = document.createElement('td');
+                    tdTitlo.innerHTML = value.titlo;
+                    let tdGenero = document.createElement('td');
+                    tdGenero.innerHTML = value.genero.nome;
+                    tr.appendChild(tdTitlo);
+                    tr.appendChild(tdGenero);
+                    elemento.appendChild(tr);   
+                });
+                
+                console.log(data);
+            },
+            error: function(err){
+                console.log(err);
+            }
+        })
+    }
+</script>
+
 </div>
+

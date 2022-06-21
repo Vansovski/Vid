@@ -19,8 +19,5 @@ namespace Vidly.Models
 
         [Display(Name = "Genero do Filme")]
         public Genero Genero { get; set; }
-
-        public int Qtd { get; set; }
-        
     }
 }
