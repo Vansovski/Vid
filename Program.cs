@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Vidly.App;
+using Vidly.App.Contratos;
 using Vidly.Data;
+using Vidly.Data.Persistence;
+using Vidly.Data.Persistence.Contratos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,14 @@ builder.Services.AddDbContext<DataContext>(
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Serviço do Cliente / Injeção de Dependica
+builder.Services.AddScoped<IGeneralPersistence,GeneralPersistence>(); //Context
+
+builder.Services.AddScoped<IClientePersistence,ClientePersistence>();//Serviços Cliente
+builder.Services.AddScoped<IClienteService,ClienteServicos>();//Serviços Cliente
+
+
 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Vidly.App.Contratos;
 using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModel;
@@ -12,11 +13,14 @@ namespace Vidly.Controllers
         private readonly ILogger<ClientesController> _logger;
         //Injeção de dependica do BD
         private  readonly DataContext _context;
+        private  readonly  IClienteService _clienteService;
 
-        public ClientesController(ILogger<ClientesController> logger, DataContext context)
+
+        public ClientesController(ILogger<ClientesController> logger, DataContext context, IClienteService clienteService)
         {
             _logger = logger;
             _context = context;
+            _clienteService = clienteService;
         }
 
         public IActionResult Index()
@@ -49,6 +53,34 @@ namespace Vidly.Controllers
             return View(clienteFilmes);
         }
 
+        public ActionResult NovoCliente()
+        {
+            var tipos = _context.MembroTipo.ToList();
+            var clienteMembro = new ClienteMembroTipo{
+                Tipos = tipos
+            };
+
+            return View("ClienteForm", clienteMembro);
+        }
+
+        public ActionResult Edit(int Id)
+        {
+            var cliente = _context.Clientes.SingleOrDefault(c => c.Id == Id);
+            if(cliente == null)
+            {
+                return NotFound();
+            }
+            var viewModel = new ClienteMembroTipo
+            {
+                Cliente = cliente,
+                Tipos = _context.MembroTipo.ToList()
+
+            };
+
+            return View("ClienteForm",viewModel);
+        }
+
+
         [HttpPost]
         public ActionResult Salvar(Cliente cliente)
         {
@@ -75,31 +107,25 @@ namespace Vidly.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult NovoCliente()
+        //API de Clientes 
+        [HttpPost]
+        public async Task<IActionResult> Post(Cliente model)
         {
-            var tipos = _context.MembroTipo.ToList();
-            var clienteMembro = new ClienteMembroTipo{
-                Tipos = tipos
-            };
-
-            return View("ClienteForm", clienteMembro);
-        }
-
-        public ActionResult Edit(int Id)
-        {
-            var cliente = _context.Clientes.SingleOrDefault(c => c.Id == Id);
-            if(cliente == null)
+            try
             {
-                return NotFound();
+                var cliente = await _clienteService.AddCliente(model);
+                if (cliente == null)
+                {
+                    return BadRequest("Erro ao tentar adiconar");
+                }
+
+                return Ok(cliente);
+
             }
-            var viewModel = new ClienteMembroTipo
+            catch (Exception ex)
             {
-                Cliente = cliente,
-                Tipos = _context.MembroTipo.ToList()
-
-            };
-
-            return View("ClienteForm",viewModel);
+                throw ex;
+            }
         }
     }
 }
