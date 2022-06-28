@@ -1,0 +1,21 @@
+@model Vidly.Models.Genero
+@{
+    ViewData["Title"] = "Novo Genero";
+  
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+@using (Html.BeginForm("SalvarGenero", "Filmes"))
+{
+    <div class="form-group my-2">
+        @Html.LabelFor(g => g.Nome)
+        @Html.TextBoxFor(g => g.Nome, new {@class = "form-control"})
+         @Html.ValidationMessageFor(g => g.Nome)
+    </div>
+   
+    <button type=“submit” class="btn btn-primary my-2">Salvar</button>
+}
+
+

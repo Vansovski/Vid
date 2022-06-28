@@ -124,5 +124,14 @@ namespace Vidly.Controllers
                 return Content(ex.ToString());
             }
         }
-    }
+
+        [HttpGet]
+        public IActionResult BuscaClientes(string name)
+        {
+            var clientes =   _context.Clientes.Where(c => c.Nome.ToLower().Contains(name.ToLower()))
+                                            .Include(c => c.MembroTipo).ToList();
+
+            return View("Index",clientes);
+        }
+    } 
 }

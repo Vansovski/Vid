@@ -55,12 +55,32 @@ namespace Vidly.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public ActionResult GetFilmes()
+        public ActionResult AdicionarGenero()
         {
-            var filmes = _context.Filmes.Include(g => g.Genero).ToList();
 
-            return Json(filmes);
+            return View("GeneroForm");
         }
+
+        [HttpPost]
+        public ActionResult SalvarGenero(Genero genero)
+        {
+            //Verifica se o genero existe 
+            var generoEx = _context.Generos.Where(g => g.Nome == genero.Nome).FirstOrDefault();
+
+            if(generoEx == null)
+            {
+                if(!ModelState.IsValid) return View("GeneroForm", genero);
+                _context.Add(genero);
+                //Atualiza DB 
+                _context.SaveChanges();
+
+            }
+
+            //Redireciona para a Lista de Filmes 
+            //return RedirectToAction("Index");
+            return Json(generoEx);
+        }
+
+        
     }
 }

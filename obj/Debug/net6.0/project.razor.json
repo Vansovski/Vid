@@ -16298,6 +16298,11 @@
   "RootNamespace": "Vidly",
   "Documents": [
     {
+      "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/GeneroForm.cshtml",
+      "TargetPath": "Views\\Filmes\\GeneroForm.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/Index.cshtml",
       "TargetPath": "Views\\Filmes\\Index.cshtml",
       "FileKind": "mvc"

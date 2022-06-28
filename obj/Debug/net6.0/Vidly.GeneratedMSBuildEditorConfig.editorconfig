@@ -31,6 +31,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL0ZpbG1lRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/GeneroForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL0dlbmVyb0Zvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/marcelo/Documentos/ASP.NET-MVC/Vidly/Views/Filmes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmlsbWVzL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
