@@ -6,7 +6,7 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "É necessário o Nome do Cliente!")]
         [StringLength(255)]
         [Display(Name = "Nome do Cliente")]
         public string Nome { get; set; }
@@ -16,13 +16,14 @@ namespace Vidly.Models
 
         public MembroTipo? MembroTipo { get; set; }
 
-        [Required]
-        [Display(Name = "Tipo de Membro")]
+        [Required(ErrorMessage = "Coloque o tipo de assinatura para o Cliente")]
+        [Display(Name = "Tipo de assinatura")]
         public byte? MembroTipoId { get; set; }
 
         public List<ClienteFilme>? Filmes { get; set; }
 
         [Display(Name = "Data de Aniversário")]
+        [Menor18]
         public DateTime? DataAniversario { get; set; }
     }
 }

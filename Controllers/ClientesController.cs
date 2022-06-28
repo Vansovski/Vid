@@ -92,22 +92,19 @@ namespace Vidly.Controllers
         {
             try
             {
-                //Verifica se o cliente é válido 
-                System.Console.WriteLine("===============> " + ModelState.IsValid);
-                if (!ModelState.IsValid)
+                //Verifica se o cliente é válido o Campo de Id é um campo requerido no modelo 
+                if (ModelState.ErrorCount > 1)
                 {
-                    System.Console.WriteLine(cliente.ToString());
                     var viewModel = new ClienteMembroTipo
                     {
                         Cliente = cliente,
                         Tipos = _context.MembroTipos.ToList()
 
                     };
-                    //Verifica se o cliente é válido 
-                    System.Console.WriteLine("===============> " + !ModelState.IsValid);
-                    //Volta para a mesma View 
-                    return Json(ModelState);
+                
+                    return View("ClienteForm", viewModel);
                 }
+                
                 //Criar caso contrario Editar
                 if (cliente.Id == 0)
                 {
