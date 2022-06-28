@@ -8,11 +8,11 @@ using Vidly.Data;
 
 #nullable disable
 
-namespace Vidly.Data.Migrations
+namespace Vidly.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220620004534_Fore2")]
-    partial class Fore2
+    [Migration("20220627235722_InsertData")]
+    partial class InsertData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,13 +25,14 @@ namespace Vidly.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataAniversario")
+                    b.Property<DateTime?>("DataAniversario")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EnviarNewsLetter")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte>("MembroTipoId")
+                    b.Property<byte?>("MembroTipoId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
@@ -51,13 +52,10 @@ namespace Vidly.Data.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("FilmeId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ClienteId", "MovieId");
+                    b.HasKey("ClienteId", "FilmeId");
 
                     b.HasIndex("FilmeId");
 
@@ -76,7 +74,7 @@ namespace Vidly.Data.Migrations
                     b.Property<short>("GeneroId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Titlo")
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

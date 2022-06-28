@@ -2,6 +2,7 @@ using Vidly.App.Contratos;
 using Vidly.Data;
 using Vidly.Data.Persistence.Contratos;
 using Vidly.Models;
+using Vidly.ViewModel;
 
 namespace Vidly.App
 {
@@ -40,24 +41,6 @@ namespace Vidly.App
             }
         }
 
-       
-        public async Task<Cliente> getClienteById(int id, bool includeMembroTipo)
-        {
-            try
-            {
-                //Obtem cliente
-                var cliente = await _clientePersistence.getClienteByIdAsync(id, includeMembroTipo);
-
-                return cliente;
-            }
-            catch (Exception ex)
-            {
-                 // TODO
-                 throw new Exception(ex.Message);
-            }
-            
-        }
-
         public async Task<bool> deleteCliente(int id)
         {
             try
@@ -78,7 +61,66 @@ namespace Vidly.App
             }
 
         }
+       
+        public async Task<Cliente> getClienteById(int id, bool includeMembroTipo = true)
+        {
+            try
+            {
+                //Obtem cliente
+                var cliente = await _clientePersistence.getClienteByIdAsync(id, includeMembroTipo);
 
-  
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                 // TODO
+                 throw new Exception(ex.Message);
+            }
+            
+        }
+
+        public async Task<Cliente[]> getAllClientesAsync()
+        {
+            try
+            {
+                //Obtem cliente
+                var clientes = await _clientePersistence.getAllClientesAsync();
+
+                return clientes.ToArray();
+            }
+            catch (Exception ex)
+            {
+                 // TODO
+                 throw new Exception(ex.Message);
+            }
+            
+        }
+
+        public ClienteFilmes getClienteFilmes(int id)
+        {
+            try
+            {
+               return _clientePersistence.getAllFilmesByClienteId(id);
+
+            }
+            catch
+            {
+                throw null;
+            }
+        }
+
+        public async  Task<bool> updateClienteAsync(Cliente cliente)
+        {
+            //Obtem o Cliente
+            var clienteDb = getClienteById(cliente.Id).Result;
+            //Atualiza os dados do Cliente
+            clienteDb.Nome = cliente.Nome;
+            clienteDb.DataAniversario = cliente.DataAniversario;
+            clienteDb.EnviarNewsLetter = cliente.EnviarNewsLetter;
+            clienteDb.MembroTipoId = cliente.MembroTipoId;
+            //Colocar AutoMap com DTO 
+            _general.Update<Cliente>(clienteDb);
+            return await _general.SaveChangesAsync();
+        }
     }
 }

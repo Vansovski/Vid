@@ -25,7 +25,7 @@ onclick="location.href='@Url.Action("NovoFilme", "Filmes")'">
                 @foreach(var filme in @Model)
                 {
                     <tr>
-                        <td> @Html.ActionLink(filme.Titlo , "Index", new { id = filme.Id })</td>
+                        <td> @Html.ActionLink(filme.Titulo , "Index", new { id = filme.Id })</td>
                         <td> @filme.Genero.Nome</td>
                     </tr>
                 }

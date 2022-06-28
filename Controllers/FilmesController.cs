@@ -26,7 +26,7 @@ namespace Vidly.Controllers
 
         public ActionResult NovoFilme()
         {
-            var generos = _context.Genero;
+            var generos = _context.Generos;
             var viewModel = new FilmeGeneros{
               Generos = generos  
             };

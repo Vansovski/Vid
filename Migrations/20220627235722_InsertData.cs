@@ -2,14 +2,13 @@
 
 #nullable disable
 
-namespace Vidly.Data.Migrations
+namespace Vidly.Migrations
 {
-    public partial class Iniciar2 : Migration
+    public partial class InsertData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
-            
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

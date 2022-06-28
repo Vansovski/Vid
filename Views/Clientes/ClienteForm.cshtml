@@ -11,14 +11,17 @@
     <div class="form-group my-2">
         @Html.LabelFor(m => m.Cliente.Nome)
         @Html.TextBoxFor(m => m.Cliente.Nome, new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Cliente.Nome)
     </div>
     <div class="form-group my-2">
         @Html.LabelFor(m => m.Cliente.DataAniversario)s
         @Html.TextBoxFor(m => m.Cliente.DataAniversario, new {@class = "form-control"})
+         @Html.ValidationMessageFor(m => m.Cliente.DataAniversario)
     </div>
     <div class="form-group my-2">
         @Html.LabelFor(m => m.Cliente.MembroTipoId)
         @Html.DropDownListFor(m => m.Cliente.MembroTipoId, new SelectList(Model.Tipos,"Id","Nome"),"Selecionar Tipo de Membro", new {@class="form-control"})
+         @Html.ValidationMessageFor(m => m.Cliente.MembroTipoId)
     </div>
     <div class="checkbox">
         @Html.CheckBoxFor(m => m.Cliente.EnviarNewsLetter) Enviar Notificações?

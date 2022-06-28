@@ -8,11 +8,11 @@ using Vidly.Data;
 
 #nullable disable
 
-namespace Vidly.Data.Migrations
+namespace Vidly.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220620003353_DataNula")]
-    partial class DataNula
+    [Migration("20220628001033_UpTables")]
+    partial class UpTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,8 @@ namespace Vidly.Data.Migrations
                     b.Property<bool>("EnviarNewsLetter")
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte>("MembroTipoId")
+                    b.Property<byte?>("MembroTipoId")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
@@ -51,13 +52,10 @@ namespace Vidly.Data.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MovieId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("FilmeId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ClienteId", "MovieId");
+                    b.HasKey("ClienteId", "FilmeId");
 
                     b.HasIndex("FilmeId");
 
@@ -76,7 +74,7 @@ namespace Vidly.Data.Migrations
                     b.Property<short>("GeneroId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Titlo")
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -99,7 +97,7 @@ namespace Vidly.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genero");
+                    b.ToTable("Generos");
                 });
 
             modelBuilder.Entity("Vidly.Models.MembroTipo", b =>
@@ -122,7 +120,7 @@ namespace Vidly.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MembroTipo");
+                    b.ToTable("MembroTipos");
                 });
 
             modelBuilder.Entity("Vidly.Models.Cliente", b =>

@@ -19,15 +19,15 @@ namespace Vidly.Data
 
         public DbSet <ClienteFilme> ClientesFilmes { get; set; }
 
-        public DbSet <MembroTipo> MembroTipo { get; set; }
+        public DbSet <MembroTipo> MembroTipos { get; set; }
 
-        public DbSet <Genero> Genero { get; set; }
+        public DbSet <Genero> Generos { get; set; }
         
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ClienteFilme>()
-                .HasKey(CF => new{CF.ClienteId,CF.MovieId});
+                .HasKey(CF => new{CF.ClienteId,CF.FilmeId});
             /*
 
             //Processo de Seeding

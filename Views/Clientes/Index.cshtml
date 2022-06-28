@@ -21,6 +21,7 @@ onclick="location.href='@Url.Action("NovoCliente", "Clientes")'">
                 <th>Clientes</th>
                 <th>Tipo de Membro</th>
                 <th class="text-center">Desconto %</th>
+                <th> Opções </th>
             </tr>
             
             <tbody>
@@ -30,6 +31,7 @@ onclick="location.href='@Url.Action("NovoCliente", "Clientes")'">
                         <td> @Html.ActionLink(cliente.Nome , "Detalhes", new { id = cliente.Id })</td>
                         <td> @cliente.MembroTipo.Nome</td>
                         <td class="text-center"> @cliente.MembroTipo.Desconto%</td>
+                        <td> edit</td>
                     </tr>
                 }
             </tbody>

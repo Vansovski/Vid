@@ -12,12 +12,13 @@ namespace Vidly.Models
         public string Nome { get; set; }
 
         [Display(Name = "Eviar Newsletter?")]
-        public bool EnviarNewsLetter { get; set; }
+        public bool EnviarNewsLetter { get; set; }       
 
+        public MembroTipo? MembroTipo { get; set; }
+
+        [Required]
         [Display(Name = "Tipo de Membro")]
-        public byte MembroTipoId { get; set; }       
-
-        public MembroTipo MembroTipo { get; set; }
+        public byte? MembroTipoId { get; set; }
 
         public List<ClienteFilme>? Filmes { get; set; }
 
