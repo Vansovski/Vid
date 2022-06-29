@@ -1,3 +1,4 @@
+using Vidly.App.Dtos;
 using Vidly.Models;
 using Vidly.ViewModel;
 
@@ -6,15 +7,15 @@ namespace Vidly.App.Contratos
     public interface IClienteService
     {
         //Adiciona um novo Cliente
-        Task<Cliente> AddCliente(Cliente model);
+        Task<ClienteDto> AddCliente(ClienteDto model);
 
         //Obtém o cliente pelo Id
-        Task<Cliente> getClienteById(int id,  bool includeMembroTipo = true);
+        Task<ClienteDto> getClienteById(int id,  bool includeMembroTipo = true);
 
         //Obtem todos os Cliente
-        Task<Cliente[]> getAllClientesAsync(bool includeMembroTipo = true);
+        Task<ClienteDto[]> getAllClientesAsync(bool includeMembroTipo = true);
 
-        Task<bool> updateClienteAsync(Cliente cliente);
+        Task<bool> updateClienteAsync(ClienteDto cliente);
 
         //Obtem o cliente e os seus filmes 
         ClienteFilmes getClienteFilmes(int id);

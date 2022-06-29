@@ -4,6 +4,7 @@ using Vidly.App.Contratos;
 using Vidly.Data;
 using Vidly.Data.Persistence;
 using Vidly.Data.Persistence.Contratos;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(
     context=> context.UseSqlite(builder.Configuration.GetConnectionString("Default"))
 );
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers()
                 .AddNewtonsoftJson(

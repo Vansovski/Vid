@@ -1,5 +1,6 @@
+using AutoMapper;
 using Vidly.App.Contratos;
-using Vidly.Data;
+using Vidly.App.Dtos;
 using Vidly.Data.Persistence.Contratos;
 using Vidly.Models;
 using Vidly.ViewModel;
@@ -11,23 +12,29 @@ namespace Vidly.App
         //Injeção de Dependencia 
         private  readonly IGeneralPersistence _general;
         private  readonly IClientePersistence _clientePersistence;
-        public ClienteServicos(IGeneralPersistence general, IClientePersistence clientePersistence)
+        private readonly IMapper _mapper;
+
+        public ClienteServicos(IGeneralPersistence general, IClientePersistence clientePersistence, IMapper mapper)
         {
             _general = general;
             _clientePersistence = clientePersistence;
+            _mapper = mapper;
         }
 
         
-        public async Task<Cliente> AddCliente(Cliente cliente)
+        public async Task<ClienteDto> AddCliente(ClienteDto clienteDto)
         {
             try
             {
+                //Parse do DTO ---> BD
+                var cliente  = _mapper.Map<Cliente>(clienteDto);
                 //Cria o o cliente no contexto
                 _general.Add<Cliente>(cliente);
                 if(await _general.SaveChangesAsync())
                 {
                     var result = await _clientePersistence.getClienteByIdAsync(cliente.Id, true);
-                    return result;
+                    //Parse do BD ---> DTO
+                    return _mapper.Map<ClienteDto>(result);
                 }
                 else{
                     //Se hover erro ao inserir retorna nulo
@@ -62,14 +69,18 @@ namespace Vidly.App
 
         }
        
-        public async Task<Cliente> getClienteById(int id, bool includeMembroTipo = true)
+        public async Task<ClienteDto> getClienteById(int id, bool includeMembroTipo = true)
         {
             try
             {
                 //Obtem cliente
                 var cliente = await _clientePersistence.getClienteByIdAsync(id, includeMembroTipo);
-
-                return cliente;
+                if (cliente == null) return null;
+                
+                //Mapeamento para o DTO
+                var resultado = _mapper.Map<ClienteDto>(cliente);
+                
+                return resultado;
             }
             catch (Exception ex)
             {
@@ -79,14 +90,16 @@ namespace Vidly.App
             
         }
 
-        public async Task<Cliente[]> getAllClientesAsync(bool includeMembroTipo = true)
+        public async Task<ClienteDto[]> getAllClientesAsync(bool includeMembroTipo = true)
         {
             try
             {
                 //Obtem cliente
                 var clientes = await _clientePersistence.getAllClientesAsync();
-
-                return clientes.ToArray();
+                
+                var resultado = _mapper.Map<ClienteDto[]>(clientes);
+                
+                return resultado.ToArray();
             }
             catch (Exception ex)
             {
@@ -109,17 +122,14 @@ namespace Vidly.App
             }
         }
 
-        public async  Task<bool> updateClienteAsync(Cliente cliente)
+        public async  Task<bool> updateClienteAsync(ClienteDto clienteDto)
         {
+
             //Obtem o Cliente
-            var clienteDb = getClienteById(cliente.Id).Result;
-            //Atualiza os dados do Cliente
-            clienteDb.Nome = cliente.Nome;
-            clienteDb.DataAniversario = cliente.DataAniversario;
-            clienteDb.EnviarNewsLetter = cliente.EnviarNewsLetter;
-            clienteDb.MembroTipoId = cliente.MembroTipoId;
+            var clienteDb = await getClienteById(clienteDto.Id);         
+
             //Colocar AutoMap com DTO 
-            _general.Update<Cliente>(clienteDb);
+            _general.Update<Cliente>(_mapper.Map<Cliente>(clienteDb));
             return await _general.SaveChangesAsync();
         }
     }

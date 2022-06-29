@@ -63,3 +63,5 @@
 /home/marcelo/Documentos/ASP.NET-MVC/Vidly/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/marcelo/Documentos/ASP.NET-MVC/Vidly/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /home/marcelo/Documentos/ASP.NET-MVC/Vidly/obj/Debug/net6.0/Vidly.MvcApplicationPartsAssemblyInfo.cs
+/home/marcelo/Documentos/ASP.NET-MVC/Vidly/bin/Debug/net6.0/AutoMapper.dll
+/home/marcelo/Documentos/ASP.NET-MVC/Vidly/bin/Debug/net6.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll

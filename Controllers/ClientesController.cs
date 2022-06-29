@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Vidly.App.Contratos;
+using Vidly.App.Dtos;
 using Vidly.Data;
 using Vidly.Models;
 using Vidly.ViewModel;
@@ -98,7 +99,7 @@ namespace Vidly.Controllers
 
 
         [HttpPost]
-        public ActionResult Salvar(Cliente cliente)
+        public ActionResult Salvar(ClienteDto cliente)
         {
             try
             {
