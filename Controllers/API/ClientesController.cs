@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Vidly.App;
 using Vidly.App.Contratos;
+using Vidly.App.Dtos;
 using Vidly.Data;
 using Vidly.Models;
 
@@ -59,7 +60,7 @@ namespace Vidly.Controllers.API
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Cliente cliente)
+        public async Task<IActionResult> Post(ClienteDto cliente)
         {
             try
             {
