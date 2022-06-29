@@ -27,7 +27,7 @@ namespace Vidly.Data.Persistence
 
             if(includeMembroTipo)
             {
-                query.Include(mt => mt.MembroTipo);
+                query = query.Include(mt => mt.MembroTipo);
             }
 
             query = query.Where(cliente => cliente.Id == id);

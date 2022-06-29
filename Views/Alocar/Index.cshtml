@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Vidly.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Alocar Filmes";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<button class="btn btn-primary my-2" 
+
+onclick="location.href='@Url.Action("Salvar", "Alocar")'">
+    Alocar
+</button>
+

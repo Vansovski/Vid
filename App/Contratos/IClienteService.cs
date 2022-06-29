@@ -12,7 +12,7 @@ namespace Vidly.App.Contratos
         Task<Cliente> getClienteById(int id,  bool includeMembroTipo = true);
 
         //Obtem todos os Cliente
-        Task<Cliente[]> getAllClientesAsync();
+        Task<Cliente[]> getAllClientesAsync(bool includeMembroTipo = true);
 
         Task<bool> updateClienteAsync(Cliente cliente);
 

@@ -86,6 +86,16 @@ namespace Vidly.Controllers
             return View("ClienteForm", viewModel);
         }
 
+        public ActionResult Excluir(int id)
+        {
+            //Exclui o Cliente
+             _clienteService.deleteCliente(id);
+            //Obtem a lista de clientes 
+            var clientes = _clienteService.getAllClientesAsync();
+            //Retorna a view como os clientes 
+            return View("Index", clientes.Result);
+        }
+
 
         [HttpPost]
         public ActionResult Salvar(Cliente cliente)

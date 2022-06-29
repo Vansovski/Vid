@@ -79,7 +79,7 @@ namespace Vidly.App
             
         }
 
-        public async Task<Cliente[]> getAllClientesAsync()
+        public async Task<Cliente[]> getAllClientesAsync(bool includeMembroTipo = true)
         {
             try
             {
